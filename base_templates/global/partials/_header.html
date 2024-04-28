@@ -21,8 +21,8 @@
     </nav>
 
     <div class="search">
-        <form action="{% url 'search'%}" method="get">
-            <input type="text" class="search-input" placeholder="Seachr" id="search", name="q">
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" class="search-input" placeholder="Seachr" id="search" name="q" value="{{ request.GET.q.strip }}">
         </form>
     </div>
 </header>
