@@ -7,17 +7,26 @@
 
     <nav class="menu">
         <ul class="menu-list">
-            <li class="menu-itens">
-                <a href="{% url 'create' %}" class="menu-link">
-                    Create
-                </a>
-            </li>
-            <li class="menu-itens">
-                <a href="" class="menu-link">
-                    Link 2
-                </a>
-            </li>
-        </ul>         
+            {% if user.is_authenticated %}
+                <li class="menu-itens">
+                    <a href="{% url 'create' %}" class="menu-link">Create</a>
+                </li>
+                <li class="menu-itens">
+                    <a href="{% url 'user_update' %}" class="menu-link">Profile</a>
+                </li>
+                <li class="menu-itens">
+                    <a href="{% url 'logout' %}" class="menu-link">Logout</a>
+                </li>
+            {% else %}
+                <li class="menu-itens">
+                    <a href="{% url 'login' %}" class="menu-link">Login</a>
+                </li>
+                <li class="menu-itens">
+                    <a href="{% url 'register' %}" class="menu-link">Create</a>
+                </li>
+            {% endif %}
+        </ul> 
+        
     </nav>
 
     <div class="search">
