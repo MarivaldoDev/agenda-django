@@ -1,37 +1,18 @@
 {% extends 'global/base.html' %}
 
 {% block content %}
-    <div class="form-wrapper">
-        <h2>Login</h2>
-        {% if user.is_authenticated %}
-          <p>Você logou como {{ user.username }}
-            Clique <a href="{% url 'logout' %}">aqui</a> para sair.
-          </p>
-        {% else %}        
-          <form 
-            action="{{ form_action }}"
-            method="POST"
-          >{% csrf_token %}
-            <div class="form-content">
-              {% for field in form %}
-                <div class="form-group">
-                  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                  {{ field }}
-                  {{ field.errors }}
+  <div class="form-wrapper">
 
-                  {% if field.help_text %}
-                    <p class="help-text">{{ field.help_text }}</p>
-                  {% endif %}
-                </div>
-              {% endfor %}
-            </div>
-      
-            <div class="form-content">
-              <div class="form-group">
-                <button class="btn" type="submit">Send</button>
-              </div>
-            </div>    
-          </form>
-        {% endif %}
-      </div>
+    <h2>Login</h2>
+
+    {% if user.is_authenticated %}
+      <p>
+        Você fez login como {{ user.username }}.
+        Clique <a href="{% url 'logout' %}">aqui</a>
+        para sair.
+      </p>
+    {% else %}
+      {% include 'contact/partials/_user-form.html' %}
+    {% endif %}
+  </div>
 {% endblock content %}
